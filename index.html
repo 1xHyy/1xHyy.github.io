@@ -13,12 +13,45 @@
             --card-bg: rgba(17, 17, 17, 0.7);
             --text-color: #ffffff;
             --hover-color: #dddddd;
+            --glow-color: #ffffff;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        @keyframes glitch {
+            0% {
+                transform: translate(0);
+                text-shadow: 0 0 5px var(--glow-color);
+            }
+            25% {
+                transform: translate(-2px, 2px);
+                text-shadow: -2px 0 var(--glow-color), 2px 2px #cccccc;
+            }
+            50% {
+                transform: translate(2px, -2px);
+                text-shadow: 2px 0 #f0f0f0, -2px -2px var(--glow-color);
+            }
+            75% {
+                transform: translate(-2px, 2px);
+                text-shadow: -2px 0 #e0e0e0, 2px 2px var(--glow-color);
+            }
+            100% {
+                transform: translate(0);
+                text-shadow: 0 0 5px var(--glow-color);
+            }
+        }
+
+        @keyframes scanline {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(100%);
+            }
         }
 
         body {
@@ -58,9 +91,9 @@
         }
 
         .profile-section {
-            background-color: rgba(17, 17, 17, 0.7);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             border-radius: 100px;
             padding: 40px 60px;
             display: flex;
@@ -72,28 +105,53 @@
             flex-wrap: wrap;
             max-width: 1000px;
             margin: 0 auto;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+            animation: borderGlow 2s infinite alternate;
+        }
+
+        @keyframes borderGlow {
+            from {
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+                border-color: rgba(255, 255, 255, 0.2);
+            }
+            to {
+                box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+                border-color: rgba(255, 255, 255, 0.4);
+            }
         }
 
         .profile-image {
             width: 200px;
             height: 200px;
             border-radius: 50%;
-            border: 3px solid var(--primary-color);
+            border: 3px solid var(--glow-color);
             padding: 5px;
-            background-color: rgba(17, 17, 17, 0.8);
+            background-color: rgba(0, 0, 0, 0.8);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.5);
+            animation: scanline 2s linear infinite;
         }
 
         .profile-image:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
         }
 
         .profile-section:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 40px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 40px rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
         }
 
@@ -105,11 +163,14 @@
             font-size: 2.5rem;
             margin-bottom: 1rem;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            animation: glitch 3s infinite;
+            position: relative;
         }
 
         .profile-info p {
             font-size: 1.2rem;
             opacity: 0.9;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
         }
 
         .container {
@@ -121,9 +182,9 @@
         }
 
         .card {
-            background-color: rgba(17, 17, 17, 0.7);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             border-radius: 15px;
             padding: 30px;
             margin: 30px 0;
@@ -133,26 +194,71 @@
             transition: all 0.3s ease;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
         .card::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
+            left: -100%;
             width: 100%;
             height: 3px;
-            background: linear-gradient(90deg, rgba(255,255,255,0.8), transparent);
+            background: linear-gradient(90deg, transparent, var(--glow-color), transparent);
+            animation: borderFlow 3s linear infinite;
+        }
+
+        @keyframes borderFlow {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        .card h2 {
+            color: var(--glow-color);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .card h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--glow-color);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover h2::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
         }
 
         .experience-item {
             margin-bottom: 15px;
             padding-left: 20px;
-            border-left: 3px solid var(--primary-color);
+            border-left: 3px solid var(--glow-color);
+            position: relative;
+        }
+
+        .experience-item::before {
+            content: '>';
+            position: absolute;
+            left: -25px;
+            color: var(--glow-color);
+            opacity: 0.8;
         }
 
         .social-links {
@@ -165,7 +271,7 @@
             text-decoration: none;
             margin: 0 15px;
             padding: 12px 24px;
-            border: 2px solid var(--primary-color);
+            border: 2px solid var(--glow-color);
             border-radius: 8px;
             transition: all 0.3s ease;
             display: inline-flex;
@@ -173,13 +279,36 @@
             gap: 10px;
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
-            background-color: rgba(17, 17, 17, 0.5);
+            background-color: rgba(0, 0, 0, 0.7);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .social-links a:hover::before {
+            left: 100%;
         }
 
         .social-links a:hover {
-            background-color: var(--primary-color);
-            color: var(--dark-bg);
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--glow-color);
             transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
         }
 
         .skills {
@@ -190,21 +319,23 @@
         }
 
         .skill-tag {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--text-color);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: var(--glow-color);
             padding: 8px 16px;
             border-radius: 20px;
             font-size: 0.9rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid var(--glow-color);
             transition: all 0.3s ease;
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
+            position: relative;
+            overflow: hidden;
         }
 
         .skill-tag:hover {
-            background-color: var(--primary-color);
-            color: var(--dark-bg);
+            background-color: rgba(255, 255, 255, 0.1);
             transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
         }
 
         .particle {
@@ -212,13 +343,13 @@
             pointer-events: none;
         }
 
-        @keyframes fall {
+        @keyframes matrix-fall {
             0% {
-                transform: translateY(-10vh) rotate(0deg);
+                transform: translateY(-100vh) rotate(0deg);
                 opacity: 1;
             }
             100% {
-                transform: translateY(100vh) rotate(360deg);
+                transform: translateY(100vh) rotate(720deg);
                 opacity: 0;
             }
         }
@@ -265,7 +396,6 @@
         </header>
 
         <div class="container">
-
             <div class="card">
                 <h2>Sobre Mí</h2>
                 <p>Me apasiona la ciberseguridad ofensiva y el pentesting. Constantemente me mantengo aprendiendo nuevas técnicas y herramientas para mejorar mis habilidades en la seguridad informática.</p>
@@ -322,48 +452,53 @@
             if (!container) return;
 
             const particle = document.createElement('div');
-            const size = Math.random() * 4 + 2; // Tamaño un poco más grande
-            const duration = 5 + Math.random() * 5; // Duración más larga
+            
+            const matrixChars = "10";
+            const char = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
+            
+            const size = Math.random() * 15 + 10;
+            const duration = 3 + Math.random() * 4;
             const startPosition = Math.random() * window.innerWidth;
-            const swayAmount = Math.random() * 50 - 25; // Mov lateral
+            const swayAmount = Math.random() * 100 - 50;
 
             particle.className = 'particle';
+            particle.textContent = char;
+            
             Object.assign(particle.style, {
-                width: `${size}px`,
-                height: `${size}px`,
-                background: `radial-gradient(circle at center, 
-                    rgba(255,255,255,0.8) 0%,
-                    rgba(255,255,255,0.4) 60%,
-                    rgba(255,255,255,0.1) 100%)`,
-                boxShadow: '0 0 10px 2px rgba(255,255,255,0.3)',
-                borderRadius: '50%',
+                position: 'absolute',
                 left: `${startPosition}px`,
-                top: '-10px',
-                position: 'absolute'
+                top: '-20px',
+                fontSize: `${size}px`,
+                color: '#fff',
+                textShadow: '0 0 8px rgba(255, 255, 255, 0.8)',
+                opacity: Math.random() * 0.5 + 0.5,
+                fontFamily: 'monospace',
+                userSelect: 'none'
             });
 
-            const keyframes = [
+            const animation = particle.animate(
+                [
+                    { 
+                        transform: 'translateY(-20px) translateX(0) rotate(0deg)',
+                        opacity: 1 
+                    },
+                    { 
+                        transform: `translateY(${window.innerHeight + 20}px) translateX(${swayAmount}px) rotate(${Math.random() * 360}deg)`,
+                        opacity: 0 
+                    }
+                ],
                 {
-                    transform: 'translateY(-10px) translateX(0) rotate(0deg)',
-                    opacity: 1
-                },
-                {
-                    transform: `translateY(${window.innerHeight}px) translateX(${swayAmount}px) rotate(360deg)`,
-                    opacity: 0
+                    duration: duration * 1000,
+                    easing: 'linear'
                 }
-            ];
-
-            const animation = particle.animate(keyframes, {
-                duration: duration * 1000,
-                easing: 'linear'
-            });
+            );
 
             container.appendChild(particle);
             animation.onfinish = () => particle.remove();
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            setInterval(createParticle, 50);
+            setInterval(createParticle, 100);
         });
     </script>
 </body>
