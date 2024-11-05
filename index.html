@@ -3,108 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Sitio Personal</title>
+    <title>Maximiliano (1xHy) - Portfolio Personal</title>
     <style>
+        :root {
+            --primary-color: #2563eb;
+            --dark-bg: #1a1a1a;
+            --card-bg: #242424;
+            --text-color: #e5e5e5;
+        }
+
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+        }
+
+        header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+        }
+
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .header-content p {
+            font-size: 1.2rem;
+            opacity: 0.9;
         }
 
         .container {
             max-width: 1100px;
-            margin: auto;
-            padding: 0 20px;
-        }
-
-        header {
-            background: #333;
-            color: #fff;
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        .profile-image {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin: 20px auto;
-            display: block;
-        }
-
-        .section {
-            background: #fff;
-            margin: 20px 0;
+            margin: 0 auto;
             padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .experience-item {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            border-left: 3px solid var(--primary-color);
         }
 
         .social-links {
             text-align: center;
-            padding: 20px;
+            padding: 40px 0;
         }
 
         .social-links a {
-            margin: 0 10px;
-            color: #333;
+            color: var(--text-color);
             text-decoration: none;
+            margin: 0 15px;
+            padding: 10px 20px;
+            border: 2px solid var(--primary-color);
+            border-radius: 5px;
+            transition: all 0.3s ease;
         }
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #333;
-            color: #fff;
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .skill-tag {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2rem;
+            }
+            .container {
+                padding: 15px;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="container">
-            <img src="tu-foto.jpg" alt="Tu Nombre" class="profile-image">
-            <h1>Maximiliano  (Aka. 1xHy)</h1>
-            <p>Estudiante de Ingeniería en Ciberseguridad, con mucho interés en el enfoque ofensivo, el Pentesting.</p>
+        <div class="header-content">
+            <h1>Maximiliano (Aka. 1xHy)</h1>
+            <p>Estudiante de Ingeniería en Ciberseguridad, con mucho interés en el enfoque ofensivo, el Pentesting</p>
         </div>
     </header>
 
     <div class="container">
-        <section class="section">
+        <div class="card">
             <h2>Sobre Mí</h2>
-            <p>Aquí puedes escribir una breve biografía o descripción sobre ti.</p>
-        </section>
+            <p>Me apasiona la ciberseguridad ofensiva y el pentesting. Constantemente me mantengo aprendiendo nuevas técnicas y herramientas para mejorar mis habilidades en la seguridad informática.</p>
+            <div class="skills">
+                <span class="skill-tag">Pentesting</span>
+                <span class="skill-tag">Ethical Hacking</span>
+                <span class="skill-tag">Kali Linux</span>
+                <span class="skill-tag">HackTheBox</span>
+                <span class="skill-tag">Redes</span>
+            </div>
+        </div>
 
-        <section class="section">
+        <div class="card">
             <h2>Experiencia</h2>
-            <ul>
-                <li>Practicando vulnerar máquinas en la plataforma HackTheBox 1</li>
-                <li>Experiencia 2</li>
-                <li>Experiencia 3</li>
-            </ul>
-        </section>
+            <div class="experience-item">
+                <h3>HackTheBox</h3>
+                <p>Practicando vulnerar máquinas en la plataforma HackTheBox, aprendiendo diferentes técnicas de explotación y metodologías de pentesting.</p>
+            </div>
+            <div class="experience-item">
+                <h3>Laboratorios de Práctica</h3>
+                <p>Configuración y práctica en entornos controlados para mejorar habilidades en pentesting.</p>
+            </div>
+        </div>
 
-        <section class="section">
+        <div class="card">
             <h2>Proyectos</h2>
-            <ul>
-                <li>Proyecto 1</li>
-                <li>Proyecto 2</li>
-                <li>Proyecto 3</li>
-            </ul>
-        </section>
+            <div class="experience-item">
+                <h3>Documentación de CTFs</h3>
+                <p>Registro y documentación de diferentes Capture The Flag completados, incluyendo metodología y técnicas utilizadas.</p>
+            </div>
+            <div class="experience-item">
+                <h3>Laboratorio Personal</h3>
+                <p>Desarrollo y mantenimiento de un laboratorio virtual para práctica de técnicas de pentesting.</p>
+            </div>
+        </div>
 
         <div class="social-links">
-            <a href="https://github.com/tu-usuario">GitHub</a>
-            <a href="https://linkedin.com/in/tu-usuario">LinkedIn</a>
-            <a href="mailto:tu@email.com">Email</a>
+            <a href="https://github.com/1xHy" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/in/tuusuario" target="_blank">LinkedIn</a>
+            <a href="mailto:tuemail@dominio.com">Email</a>
         </div>
     </div>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Tu Nombre. Todos los derechos reservados.</p>
-        </div>
-    </footer>
 </body>
 </html>
