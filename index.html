@@ -10,49 +10,71 @@
             --primary-color: #ffffff;
             --secondary-color: #808080;
             --dark-bg: #000000;
-            --card-bg: #111111;
+            --card-bg: rgba(17, 17, 17, 0.7);
             --text-color: #ffffff;
             --hover-color: #dddddd;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             line-height: 1.6;
-            margin: 0;
-            padding: 0;
             background-color: var(--dark-bg);
             color: var(--text-color);
+            min-height: 100vh;
+            overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.1) 2%, transparent 0%),
-                radial-gradient(circle at 75px 75px, rgba(255, 255, 255, 0.1) 2%, transparent 0%);
-            background-size: 100px 100px;
+                linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-attachment: fixed;
         }
 
-          header {
-    position: relative;
-    padding: 100px 20px;
-    background: transparent; /* Quitamos el fondo para ver las partículas */
-    overflow: hidden;
-    border-bottom: none;
-}
+        .main-wrapper {
+            position: relative;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        header {
+            position: relative;
+            padding: 100px 20px;
+            background: transparent;
+            overflow: visible;
+        }
+
+        .particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
 
         .profile-section {
-    background-color: var(--card-bg);
-    border-radius: 100px; /* Esto le da la forma ovalada */
-    padding: 40px 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 40px;
-    position: relative;
-    z-index: 2;
-    flex-wrap: wrap;
-    max-width: 1000px;
-    margin: 0 auto;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px);
-}
+            background-color: rgba(17, 17, 17, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 100px;
+            padding: 40px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            position: relative;
+            z-index: 2;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        }
 
         .profile-image {
             width: 200px;
@@ -60,7 +82,7 @@
             border-radius: 50%;
             border: 3px solid var(--primary-color);
             padding: 5px;
-            background-color: var(--card-bg);
+            background-color: rgba(17, 17, 17, 0.8);
             transition: all 0.3s ease;
         }
 
@@ -68,12 +90,12 @@
             transform: translateY(-5px);
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
         }
-        
+
         .profile-section:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 40px rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-}
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
 
         .profile-info {
             max-width: 500px;
@@ -90,40 +112,31 @@
             opacity: 0.9;
         }
 
-        .matrix-effect {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        @keyframes matrix {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100%); }
-        }
-
         .container {
             max-width: 1100px;
             margin: 0 auto;
             padding: 20px;
+            position: relative;
+            z-index: 2;
         }
 
         .card {
-            background-color: var(--card-bg);
+            background-color: rgba(17, 17, 17, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border-radius: 15px;
             padding: 30px;
             margin: 30px 0;
             border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
             overflow: hidden;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .card:hover {
             transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .card::before {
@@ -133,12 +146,7 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: linear-gradient(90deg, white, transparent);
-        }
-
-        h2 {
-            color: var(--primary-color);
-            margin-bottom: 20px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.8), transparent);
         }
 
         .experience-item {
@@ -163,10 +171,9 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-        }
-
-        .social-links a i {
-            font-size: 1.2rem;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            background-color: rgba(17, 17, 17, 0.5);
         }
 
         .social-links a:hover {
@@ -184,78 +191,58 @@
 
         .skill-tag {
             background-color: rgba(255, 255, 255, 0.1);
-            color: var(--primary-color);
+            color: var(--text-color);
             padding: 8px 16px;
             border-radius: 20px;
             font-size: 0.9rem;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
         }
 
         .skill-tag:hover {
             background-color: var(--primary-color);
             color: var(--dark-bg);
+            transform: translateY(-2px);
         }
-        
+
         .particle {
-    background: linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0.8),
-        rgba(255, 255, 255, 0.2)
-    ) !important; 
-        .particles {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1; /* Lo ponemos detrás de todo */
-    background-color: var(--dark-bg);
-}
-        .profile-section::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, 
-        rgba(255,255,255,0.1), 
-        rgba(255,255,255,0.05), 
-        rgba(255,255,255,0.1)
-    );
-    border-radius: 100px;
-    z-index: -1;
-} 
+            position: absolute;
+            pointer-events: none;
+        }
+
         @keyframes fall {
-            to {
-                transform: translateY(100vh);
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
                 opacity: 0;
             }
         }
 
         @media (max-width: 768px) {
-    .profile-section {
-        border-radius: 50px;
-        padding: 30px;
-    }
-    
-    .profile-image {
-        width: 150px;
-        height: 150px;
-    }
-
-    .profile-info h1 {
-        font-size: 1.8rem;
-    }
-}
-            .profile-info h1 {
-                font-size: 2rem;
+            .profile-section {
+                border-radius: 50px;
+                padding: 30px;
+                margin: 0 15px;
             }
+            
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+
+            .profile-info h1 {
+                font-size: 1.8rem;
+            }
+
             .container {
                 padding: 15px;
             }
+
             .social-links a {
                 display: block;
                 margin: 10px auto;
@@ -265,111 +252,119 @@
     </style>
 </head>
 <body>
-    <div class="particles"></div>
-    <header>
-        <div class="matrix-effect"></div>
-        <div class="profile-section">
-            <img src="https://github.com/1xHyy.png" alt="1xHy" class="profile-image">
-            <div class="profile-info">
-                <h1>Maximiliano (Aka. 1xHy)</h1>
-                <p>Estudiante de Ingeniería en Ciberseguridad especializado en Seguridad Ofensiva y Pentesting, en preparación para la certificación eJPT.</p>
+    <div class="main-wrapper">
+        <div class="particles-container"></div>
+        <header>
+            <div class="profile-section">
+                <img src="https://github.com/1xHyy.png" alt="1xHy" class="profile-image">
+                <div class="profile-info">
+                    <h1>Maximiliano (Aka. 1xHy)</h1>
+                    <p>Estudiante de Ingeniería en Ciberseguridad especializado en Seguridad Ofensiva y Pentesting, en preparación para la certificación eJPT.</p>
+                </div>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <div class="container">
-        <div class="card">
-            <h2>Sobre Mí</h2>
-            <p>Me apasiona la ciberseguridad ofensiva y el pentesting. Constantemente me mantengo aprendiendo nuevas técnicas y herramientas para mejorar mis habilidades en la seguridad informática.</p>
-            <div class="skills">
-                <span class="skill-tag">Pentesting</span>
-                <span class="skill-tag">Ethical Hacking</span>
-                <span class="skill-tag">Kali Linux</span>
-                <span class="skill-tag">HackTheBox</span>
-                <span class="skill-tag">Redes</span>
-            </div>
-        </div>
+        <div class="container">
 
-        <div class="card">
-            <h2>Experiencia</h2>
-            <div class="experience-item">
-                <h3>HackTheBox</h3>
-                <p>Practicando vulnerar máquinas en la plataforma HackTheBox, aprendiendo diferentes técnicas de explotación y metodologías de pentesting.</p>
+            <div class="card">
+                <h2>Sobre Mí</h2>
+                <p>Me apasiona la ciberseguridad ofensiva y el pentesting. Constantemente me mantengo aprendiendo nuevas técnicas y herramientas para mejorar mis habilidades en la seguridad informática.</p>
+                <div class="skills">
+                    <span class="skill-tag">Pentesting</span>
+                    <span class="skill-tag">Ethical Hacking</span>
+                    <span class="skill-tag">Kali Linux</span>
+                    <span class="skill-tag">HackTheBox</span>
+                    <span class="skill-tag">Redes</span>
+                </div>
             </div>
-            <div class="experience-item">
-                <h3>Laboratorios de Práctica</h3>
-                <p>Configuración y práctica en entornos controlados para mejorar habilidades en pentesting.</p>
-            </div>
-        </div>
 
-        <div class="card">
-            <h2>Proyectos</h2>
-            <div class="experience-item">
-                <h3>Documentación de CTFs</h3>
-                <p>Registro y documentación de diferentes Capture The Flag completados, incluyendo metodología y técnicas utilizadas.</p>
+            <div class="card">
+                <h2>Experiencia</h2>
+                <div class="experience-item">
+                    <h3>HackTheBox</h3>
+                    <p>Practicando vulnerar máquinas en la plataforma HackTheBox, aprendiendo diferentes técnicas de explotación y metodologías de pentesting.</p>
+                </div>
+                <div class="experience-item">
+                    <h3>Laboratorios de Práctica</h3>
+                    <p>Configuración y práctica en entornos controlados para mejorar habilidades en pentesting.</p>
+                </div>
             </div>
-            <div class="experience-item">
-                <h3>Laboratorio Personal</h3>
-                <p>Desarrollo y mantenimiento de un laboratorio virtual para práctica de técnicas de pentesting.</p>
-            </div>
-        </div>
 
-        <div class="social-links">
-            <a href="https://github.com/1xHyy" target="_blank">
-                <i class="fab fa-github"></i> GitHub
-            </a>
-            <a href="https://linkedin.com/in/maximiliano-gaete-aka-1xhy-467398285" target="_blank">
-                <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
-            <a href="mailto:mandez3019@gmail.com">
-                <i class="fas fa-envelope"></i> Email
-            </a>
+            <div class="card">
+                <h2>Proyectos</h2>
+                <div class="experience-item">
+                    <h3>Documentación de CTFs</h3>
+                    <p>Registro y documentación de diferentes Capture The Flag completados, incluyendo metodología y técnicas utilizadas.</p>
+                </div>
+                <div class="experience-item">
+                    <h3>Laboratorio Personal</h3>
+                    <p>Desarrollo y mantenimiento de un laboratorio virtual para práctica de técnicas de pentesting.</p>
+                </div>
+            </div>
+
+            <div class="social-links">
+                <a href="https://github.com/1xHyy" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://linkedin.com/in/maximiliano-gaete-aka-1xhy-467398285" target="_blank">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="mailto:mandez3019@gmail.com">
+                    <i class="fas fa-envelope"></i> Email
+                </a>
+            </div>
         </div>
     </div>
-<script>
-    function createParticle() {
-        const particles = document.querySelector('.particles');
-        if (!particles) return; 
 
-        const particle = document.createElement('div');
-        const size = Math.random() * 3 + 1; // Tamaño variable
+    <script>
+        function createParticle() {
+            const container = document.querySelector('.particles-container');
+            if (!container) return;
 
-        Object.assign(particle.style, {
-            position: 'absolute',
-            width: `${size}px`,
-            height: `${size}px`,
-            background: 'rgba(255, 255, 255, 0.7)',
-            borderRadius: '50%',
-            left: `${Math.random() * 100}vw`,
-            top: '-10px',
-            pointerEvents: 'none',
-            boxShadow: '0 0 10px rgba(255, 255, 255, 0.5)'
+            const particle = document.createElement('div');
+            const size = Math.random() * 4 + 2; // Tamaño un poco más grande
+            const duration = 5 + Math.random() * 5; // Duración más larga
+            const startPosition = Math.random() * window.innerWidth;
+            const swayAmount = Math.random() * 50 - 25; // Mov lateral
+
+            particle.className = 'particle';
+            Object.assign(particle.style, {
+                width: `${size}px`,
+                height: `${size}px`,
+                background: `radial-gradient(circle at center, 
+                    rgba(255,255,255,0.8) 0%,
+                    rgba(255,255,255,0.4) 60%,
+                    rgba(255,255,255,0.1) 100%)`,
+                boxShadow: '0 0 10px 2px rgba(255,255,255,0.3)',
+                borderRadius: '50%',
+                left: `${startPosition}px`,
+                top: '-10px',
+                position: 'absolute'
+            });
+
+            const keyframes = [
+                {
+                    transform: 'translateY(-10px) translateX(0) rotate(0deg)',
+                    opacity: 1
+                },
+                {
+                    transform: `translateY(${window.innerHeight}px) translateX(${swayAmount}px) rotate(360deg)`,
+                    opacity: 0
+                }
+            ];
+
+            const animation = particle.animate(keyframes, {
+                duration: duration * 1000,
+                easing: 'linear'
+            });
+
+            container.appendChild(particle);
+            animation.onfinish = () => particle.remove();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setInterval(createParticle, 50);
         });
-
-        const duration = 3 + Math.random() * 4;
-        particle.style.animation = `fall ${duration}s linear`;
-
-        particles.appendChild(particle);
-        particle.onanimationend = () => particle.remove();
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        // Crear partículas más frecuentemente
-        setInterval(createParticle, 50);
-    });
-</script>
-
-<style>
-    @keyframes fall {
-        from {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        to {
-            transform: translateY(100vh);
-            opacity: 0;
-        }
-    }
-</style>
+    </script>
 </body>
 </html>
