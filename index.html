@@ -28,24 +28,31 @@
             background-size: 100px 100px;
         }
 
-        header {
-            position: relative;
-            padding: 100px 20px;
-            background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9));
-            overflow: hidden;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
+          header {
+    position: relative;
+    padding: 100px 20px;
+    background: transparent; /* Quitamos el fondo para ver las partículas */
+    overflow: hidden;
+    border-bottom: none;
+}
 
         .profile-section {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 40px;
-            margin-bottom: 30px;
-            position: relative;
-            z-index: 2;
-            flex-wrap: wrap;
-        }
+    background-color: var(--card-bg);
+    border-radius: 100px; /* Esto le da la forma ovalada */
+    padding: 40px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    position: relative;
+    z-index: 2;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
 
         .profile-image {
             width: 200px;
@@ -61,6 +68,12 @@
             transform: translateY(-5px);
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
         }
+        
+        .profile-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 40px rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
 
         .profile-info {
             max-width: 500px;
@@ -192,17 +205,38 @@
             background-color: var(--primary-color);
             color: var(--dark-bg);
         }
-
+        
+        .particle {
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.8),
+        rgba(255, 255, 255, 0.2)
+    ) !important; 
         .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1; /* Lo ponemos detrás de todo */
+    background-color: var(--dark-bg);
+}
+        .profile-section::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        rgba(255,255,255,0.1), 
+        rgba(255,255,255,0.05), 
+        rgba(255,255,255,0.1)
+    );
+    border-radius: 100px;
+    z-index: -1;
+} 
         @keyframes fall {
             to {
                 transform: translateY(100vh);
@@ -211,6 +245,20 @@
         }
 
         @media (max-width: 768px) {
+    .profile-section {
+        border-radius: 50px;
+        padding: 30px;
+    }
+    
+    .profile-image {
+        width: 150px;
+        height: 150px;
+    }
+
+    .profile-info h1 {
+        font-size: 1.8rem;
+    }
+}
             .profile-info h1 {
                 font-size: 2rem;
             }
@@ -293,26 +341,30 @@
         if (!particles) return; 
 
         const particle = document.createElement('div');
+        const size = Math.random() * 3 + 1; // Tamaño variable
+
         Object.assign(particle.style, {
             position: 'absolute',
-            width: '2px',
-            height: '2px',
-            background: 'rgba(255, 255, 255, 0.5)',
+            width: `${size}px`,
+            height: `${size}px`,
+            background: 'rgba(255, 255, 255, 0.7)',
             borderRadius: '50%',
             left: `${Math.random() * 100}vw`,
             top: '-10px',
-            pointerEvents: 'none'
+            pointerEvents: 'none',
+            boxShadow: '0 0 10px rgba(255, 255, 255, 0.5)'
         });
-        const duration = 2 + Math.random() * 3;
+
+        const duration = 3 + Math.random() * 4;
         particle.style.animation = `fall ${duration}s linear`;
 
         particles.appendChild(particle);
-
         particle.onanimationend = () => particle.remove();
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-        setInterval(createParticle, 100);
+        // Crear partículas más frecuentemente
+        setInterval(createParticle, 50);
     });
 </script>
 
