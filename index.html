@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maximiliano (1xHy) - Portfolio Personal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #00ff00;
+            --primary-color: #ffffff;
+            --secondary-color: #808080;
             --dark-bg: #000000;
             --card-bg: #111111;
             --text-color: #ffffff;
+            --hover-color: #dddddd;
         }
 
         body {
@@ -19,26 +22,44 @@
             padding: 0;
             background-color: var(--dark-bg);
             color: var(--text-color);
+            background-image: 
+                radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.1) 2%, transparent 0%),
+                radial-gradient(circle at 75px 75px, rgba(255, 255, 255, 0.1) 2%, transparent 0%);
+            background-size: 100px 100px;
         }
 
-        .header-section {
-            text-align: center;
-            padding: 50px 20px;
+        header {
+            position: relative;
+            padding: 100px 20px;
+            background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9));
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .profile-section {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 30px;
+            gap: 40px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
             flex-wrap: wrap;
-            background-color: rgba(0, 255, 0, 0.05);
         }
 
         .profile-image {
-            width: 150px;
-            height: 150px;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
-            border: 2px solid var(--primary-color);
+            border: 3px solid var(--primary-color);
             padding: 5px;
-            background-color: var(--dark-bg);
+            background-color: var(--card-bg);
+            transition: all 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
         }
 
         .profile-info {
@@ -46,35 +67,38 @@
         }
 
         .profile-info h1 {
-            color: var(--primary-color);
-            margin-bottom: 10px;
             font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
 
         .profile-info p {
-            margin-bottom: 20px;
+            font-size: 1.2rem;
+            opacity: 0.9;
         }
 
-        .social-links {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
+        .matrix-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            z-index: 1;
         }
 
-        .social-links a {
-            color: var(--primary-color);
-            text-decoration: none;
-            padding: 8px 20px;
-            border: 1px solid var(--primary-color);
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            background-color: rgba(0, 255, 0, 0.1);
+        .matrix-effect::before {
+            content: "01";
+            position: absolute;
+            color: rgba(255, 255, 255, 0.1);
+            font-size: 20px;
+            width: 100%;
+            animation: matrix 20s linear infinite;
         }
 
-        .social-links a:hover {
-            background-color: var(--primary-color);
-            color: var(--dark-bg);
-            box-shadow: 0 0 10px var(--primary-color);
+        @keyframes matrix {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
         }
 
         .container {
@@ -85,13 +109,30 @@
 
         .card {
             background-color: var(--card-bg);
-            border-radius: 10px;
-            padding: 25px;
-            margin: 20px 0;
-            border: 1px solid rgba(0, 255, 0, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
         }
 
-        .card h2 {
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, white, transparent);
+        }
+
+        h2 {
             color: var(--primary-color);
             margin-bottom: 20px;
         }
@@ -102,6 +143,34 @@
             border-left: 3px solid var(--primary-color);
         }
 
+        .social-links {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .social-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 12px 24px;
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .social-links a i {
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            color: var(--dark-bg);
+            transform: translateY(-3px);
+        }
+
         .skills {
             display: flex;
             flex-wrap: wrap;
@@ -110,35 +179,69 @@
         }
 
         .skill-tag {
-            background-color: rgba(0, 255, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.1);
             color: var(--primary-color);
-            padding: 5px 15px;
-            border-radius: 15px;
+            padding: 8px 16px;
+            border-radius: 20px;
             font-size: 0.9rem;
-            border: 1px solid var(--primary-color);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background-color: var(--primary-color);
+            color: var(--dark-bg);
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .profile-info h1 {
+                font-size: 2rem;
+            }
+            .container {
+                padding: 15px;
+            }
+            .social-links a {
+                display: block;
+                margin: 10px auto;
+                max-width: 200px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="header-section">
-        <img src="https://github.com/1xHyy.png" alt="1xHy" class="profile-image">
-        <div class="profile-info">
-            <h1>Maximiliano (Aka. 1xHy)</h1>
-            <p>Estudiante de Ingeniería en Ciberseguridad, con mucho interés en el enfoque ofensivo, el pentesting.</p>
-            <div class="social-links">
-                <a href="https://github.com/1xHyy" target="_blank">GitHub</a>
-                <a href="https://linkedin.com/in/xxxxx" target="_blank">LinkedIn</a>
-                <a href="mailto:xxxx@gmail.com">Email</a>
-                <a href="https://academy.hackthebox.com/exams ">HTB</a>
+    <div class="particles"></div>
+    <header>
+        <div class="matrix-effect"></div>
+        <div class="profile-section">
+            <img src="https://github.com/1xHyy.png" alt="1xHy" class="profile-image">
+            <div class="profile-info">
+                <h1>Maximiliano (Aka. 1xHy)</h1>
+                <p>Estudiante de Ingeniería en Ciberseguridad especializado en Seguridad Ofensiva y Pentesting, en preparación para la certificación eJPT.</p>
             </div>
         </div>
-    </div>
+    </header>
 
     <div class="container">
         <div class="card">
             <h2>Sobre Mí</h2>
-            <p>Apasionado por la ciberseguridad con un enfoque específico en el campo ofensivo. Actualmente me encuentro preparándome para la certificación eJPT, mientras desarrollo mis habilidades en pruebas de penetración y evaluación de vulnerabilidades.<p>
-<p>Mantengo una práctica activa en plataformas como HackTheBox, donde continuamente mejoro mis habilidades técnicas y aprendo nuevas técnicas de explotación. Mi objetivo es convertirme en un profesional certificado en pruebas de penetración, contribuyendo a hacer de internet un lugar más seguro.</p>
+            <p>Me apasiona la ciberseguridad ofensiva y el pentesting. Constantemente me mantengo aprendiendo nuevas técnicas y herramientas para mejorar mis habilidades en la seguridad informática.</p>
             <div class="skills">
                 <span class="skill-tag">Pentesting</span>
                 <span class="skill-tag">Ethical Hacking</span>
@@ -171,6 +274,59 @@
                 <p>Desarrollo y mantenimiento de un laboratorio virtual para práctica de técnicas de pentesting.</p>
             </div>
         </div>
+
+        <div class="social-links">
+            <a href="https://github.com/1xHyy" target="_blank">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://linkedin.com/in/xxxxx" target="_blank">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="mailto:xxxxx@gmail.com">
+                <i class="fas fa-envelope"></i> Email
+            </a>
+        </div>
     </div>
+<script>
+    function createParticle() {
+        const particles = document.querySelector('.particles');
+        if (!particles) return; 
+
+        const particle = document.createElement('div');
+        Object.assign(particle.style, {
+            position: 'absolute',
+            width: '2px',
+            height: '2px',
+            background: 'rgba(255, 255, 255, 0.5)',
+            borderRadius: '50%',
+            left: `${Math.random() * 100}vw`,
+            top: '-10px',
+            pointerEvents: 'none'
+        });
+        const duration = 2 + Math.random() * 3;
+        particle.style.animation = `fall ${duration}s linear`;
+
+        particles.appendChild(particle);
+
+        particle.onanimationend = () => particle.remove();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        setInterval(createParticle, 100);
+    });
+</script>
+
+<style>
+    @keyframes fall {
+        from {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateY(100vh);
+            opacity: 0;
+        }
+    }
+</style>
 </body>
 </html>
