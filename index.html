@@ -1,526 +1,168 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maximiliano (1xHy) - Portfolio Personal</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Personal Page</title>
     <style>
-        :root {
-            --primary-color: #ffffff;
-            --secondary-color: #808080;
-            --dark-bg: #000000;
-            --card-bg: rgba(17, 17, 17, 0.7);
-            --text-color: #ffffff;
-            --hover-color: #dddddd;
-            --glow-color: #ffffff;
-        }
-
-        * {
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e;
+            color: #ffffff;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        @keyframes glitch {
-            0% {
-                transform: translate(0);
-                text-shadow: 0 0 5px var(--glow-color);
-            }
-            25% {
-                transform: translate(-2px, 2px);
-                text-shadow: -2px 0 var(--glow-color), 2px 2px #cccccc;
-            }
-            50% {
-                transform: translate(2px, -2px);
-                text-shadow: 2px 0 #f0f0f0, -2px -2px var(--glow-color);
-            }
-            75% {
-                transform: translate(-2px, 2px);
-                text-shadow: -2px 0 #e0e0e0, 2px 2px var(--glow-color);
-            }
-            100% {
-                transform: translate(0);
-                text-shadow: 0 0 5px var(--glow-color);
-            }
-        }
-
-        @keyframes scanline {
-            0% {
-                transform: translateY(-100%);
-            }
-            100% {
-                transform: translateY(100%);
-            }
-        }
-
-        body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            line-height: 1.6;
-            background-color: var(--dark-bg);
-            color: var(--text-color);
-            min-height: 100vh;
-            overflow-x: hidden;
-            background-image: 
-                linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
-                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            background-attachment: fixed;
-        }
-
-        .main-wrapper {
-            position: relative;
-            min-height: 100vh;
-            width: 100%;
         }
 
         header {
-            position: relative;
-            padding: 100px 20px;
-            background: transparent;
-            overflow: visible;
-        }
-
-        .particles-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .profile-section {
-            background-color: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-radius: 100px;
-            padding: 40px 60px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 40px;
-            position: relative;
-            z-index: 2;
-            flex-wrap: wrap;
-            max-width: 1000px;
-            margin: 0 auto;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
-            animation: borderGlow 2s infinite alternate;
+            justify-content: space-between;
+            background-color: #292929;
+            padding: 10px 20px;
         }
 
-        @keyframes borderGlow {
-            from {
-                box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-                border-color: rgba(255, 255, 255, 0.2);
-            }
-            to {
-                box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
-                border-color: rgba(255, 255, 255, 0.4);
-            }
-        }
-
-        .profile-image {
-            width: 200px;
-            height: 200px;
+        header img {
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            border: 3px solid var(--glow-color);
-            padding: 5px;
-            background-color: rgba(0, 0, 0, 0.8);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
         }
 
-        .profile-image::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: rgba(255, 255, 255, 0.5);
-            animation: scanline 2s linear infinite;
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem;
         }
 
-        .profile-image:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+        nav {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #292929;
         }
 
-        .profile-section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 40px rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-right: 15px;
+            font-size: 1rem;
         }
 
-        .profile-info {
-            max-width: 500px;
+        nav a:hover {
+            color: #00bcd4;
         }
-
-        .profile-info h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-    position: relative;
-    display: inline-block;
-    overflow: hidden;
-    white-space: nowrap;
-    animation: 
-        typewriter 2.5s steps(40, end),
-        blinkCursor 0.75s step-end infinite;
-    border-right: 3px solid white;
-}
-
-.profile-info p {
-    font-size: 1.2rem;
-    opacity: 0;
-    animation: fadeIn 2s ease 2.5s forwards;
-}
 
         .container {
-            max-width: 1100px;
-            margin: 0 auto;
+            max-width: 900px;
+            margin: 20px auto;
             padding: 20px;
-            position: relative;
-            z-index: 2;
+            background-color: #333333;
+            border-radius: 10px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            color: #00bcd4;
+            margin-bottom: 10px;
+        }
+
+        .cards {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
         }
 
         .card {
-            background-color: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-radius: 15px;
-            padding: 30px;
-            margin: 30px 0;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--glow-color), transparent);
-            animation: borderFlow 3s linear infinite;
-        }
-        /* Añadir estas nuevas animaciones después de las existentes */
-@keyframes typewriter {
-    from { width: 0; }
-    to { width: 100%; }
-}
-
-@keyframes blinkCursor {
-    from, to { border-right-color: transparent }
-    50% { border-right-color: white; }
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-        @keyframes borderFlow {
-            0% {
-                left: -100%;
-            }
-            100% {
-                left: 100%;
-            }
-        }
-
-        .card h2 {
-            color: var(--glow-color);
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-            position: relative;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-
-        .card h2::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--glow-color);
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover h2::after {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
-        }
-
-        .experience-item {
-            margin-bottom: 15px;
-            padding-left: 20px;
-            border-left: 3px solid var(--glow-color);
-            position: relative;
-        }
-
-        .experience-item::before {
-            content: '>';
-            position: absolute;
-            left: -25px;
-            color: var(--glow-color);
-            opacity: 0.8;
-        }
-
-        .social-links {
+            background-color: #444444;
+            padding: 15px;
+            border-radius: 10px;
             text-align: center;
-            padding: 40px 0;
+            flex: 1;
+            min-width: 200px;
         }
 
-        .social-links a {
-            color: var(--text-color);
-            text-decoration: none;
-            margin: 0 15px;
-            padding: 12px 24px;
-            border: 2px solid var(--glow-color);
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            background-color: rgba(0, 0, 0, 0.7);
-            position: relative;
-            overflow: hidden;
+        .card img {
+            max-width: 100px;
+            margin-bottom: 10px;
         }
 
-        .social-links a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255, 255, 255, 0.2),
-                transparent
-            );
-            transition: 0.5s;
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
         }
 
-        .social-links a:hover::before {
-            left: 100%;
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #292929;
         }
 
-        .social-links a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--glow-color);
-            transform: translateY(-3px);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-        }
-
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .skill-tag {
-            background-color: rgba(0, 0, 0, 0.7);
-            color: var(--glow-color);
-            padding: 8px 16px;
-            border-radius: 20px;
+        footer p {
+            margin: 0;
             font-size: 0.9rem;
-            border: 1px solid var(--glow-color);
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skill-tag:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-        }
-
-        .particle {
-            position: absolute;
-            pointer-events: none;
-        }
-
-        @keyframes matrix-fall {
-            0% {
-                transform: translateY(-100vh) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(720deg);
-                opacity: 0;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .profile-section {
-                border-radius: 50px;
-                padding: 30px;
-                margin: 0 15px;
-            }
-            
-            .profile-image {
-                width: 150px;
-                height: 150px;
-            }
-
-            .profile-info h1 {
-                font-size: 1.8rem;
-            }
-
-            .container {
-                padding: 15px;
-            }
-
-            .social-links a {
-                display: block;
-                margin: 10px auto;
-                max-width: 200px;
-            }
         }
     </style>
 </head>
 <body>
-    <div class="main-wrapper">
-        <div class="particles-container"></div>
-        <header>
-            <div class="profile-section">
-                <img src="https://github.com/1xHyy.png" alt="xH1" class="profile-image">
-                <div class="profile-info">
-                    <h1>Maximiliano (Aka. xH1)</h1>
-                    <p>Estudiante de Ingeniería en Ciberseguridad especializado en Seguridad Ofensiva y Pentesting, en preparación para la certificación eJPT.</p>
-                </div>
-            </div>
-        </header>
+    <header>
+        <img src="image.png" alt="Logo">
+        <h1>My Personal Page</h1>
+    </header>
 
-        <div class="container">
-            <div class="card">
-                <h2>Sobre Mí</h2>
-                <p>Me apasiona la ciberseguridad ofensiva y el pentesting. Constantemente me mantengo aprendiendo nuevas técnicas y herramientas para mejorar mis habilidades en la seguridad informática.</p>
-                <div class="skills">
-                    <span class="skill-tag">Pentesting</span>
-                    <span class="skill-tag">Ethical Hacking</span>
-                    <span class="skill-tag">Kali Linux</span>
-                    <span class="skill-tag">HackTheBox</span>
-                    <span class="skill-tag">Redes</span>
-                </div>
-            </div>
+    <nav>
+        <a href="#about">About Me</a>
+        <a href="#objectives">Objectives</a>
+        <a href="#writeups">Writeups</a>
+        <a href="#blog">Blog</a>
+    </nav>
 
-            <div class="card">
-                <h2>Experiencia</h2>
-                <div class="experience-item">
-                    <h3>HackTheBox</h3>
-                    <p>Practicando vulnerar máquinas en la plataforma HackTheBox, aprendiendo diferentes técnicas de explotación y metodologías de pentesting.</p>
-                </div>
-                <div class="experience-item">
-                    <h3>Laboratorios de Práctica</h3>
-                    <p>Configuración y práctica en entornos controlados para mejorar habilidades en pentesting.</p>
-                </div>
-            </div>
+    <div class="container">
+        <section id="about" class="section">
+            <h2>About Me</h2>
+            <p>Hello! My name is Miguel 👋. I am just starting to create CTFs for Dockerlabs and HackMyVM.</p>
+        </section>
 
-            <div class="card">
-                <h2>Proyectos</h2>
-                <div class="experience-item">
-                    <h3>Documentación de CTFs</h3>
-                    <p>Registro y documentación de diferentes Capture The Flag completados, incluyendo metodología y técnicas utilizadas.</p>
+        <section id="objectives" class="section">
+            <h2>Objectives 2025</h2>
+            <div class="cards">
+                <div class="card">
+                    <img src="https://via.placeholder.com/100" alt="Objective 1">
+                    <h3>Bug Bounty Hunting Certification</h3>
                 </div>
-                <div class="experience-item">
-                    <h3>Laboratorio Personal</h3>
-                    <p>Desarrollo y mantenimiento de un laboratorio virtual para práctica de técnicas de pentesting.</p>
+                <div class="card">
+                    <img src="https://via.placeholder.com/100" alt="Objective 2">
+                    <h3>Web Application Penetration Tester</h3>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/100" alt="Objective 3">
+                    <h3>Create a Machine in HackTheBox</h3>
                 </div>
             </div>
+        </section>
 
-            <div class="social-links">
-                <a href="https://github.com/1xHyy" target="_blank">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-                <a href="https://www.linkedin.com/in/maximiliano-gaete-aka-xh1-467398285/" target="_blank">
-                    <i class="fab fa-linkedin"></i> LinkedIn
-                </a>
-                <a href="mailto:xxxxxx@gmail.com">
-                    <i class="fas fa-envelope"></i> Email
-                </a>
-            </div>
-        </div>
+        <section id="writeups" class="section">
+            <h2>Writeups</h2>
+            <ul>
+                <li><a href="#">EvilCups</a></li>
+                <li><a href="#">Nibbles</a></li>
+                <li><a href="#">Cap (Spanish)</a></li>
+                <li><a href="#">PermX</a></li>
+            </ul>
+        </section>
+
+        <section id="blog" class="section">
+            <h2>Blog</h2>
+            <p>Explore my latest articles and projects.</p>
+            <ul>
+                <li><a href="#">Creating CTFs with Docker</a></li>
+                <li><a href="#">Arch Linux NVIDIA Drivers Issue</a></li>
+            </ul>
+        </section>
     </div>
 
-    <script>
-        function createParticle() {
-            const container = document.querySelector('.particles-container');
-            if (!container) return;
-
-            const particle = document.createElement('div');
-            
-            const matrixChars = "10";
-            const char = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
-            
-            const size = Math.random() * 15 + 10;
-            const duration = 3 + Math.random() * 4;
-            const startPosition = Math.random() * window.innerWidth;
-            const swayAmount = Math.random() * 100 - 50;
-
-            particle.className = 'particle';
-            particle.textContent = char;
-            
-            Object.assign(particle.style, {
-                position: 'absolute',
-                left: `${startPosition}px`,
-                top: '-20px',
-                fontSize: `${size}px`,
-                color: '#fff',
-                textShadow: '0 0 8px rgba(255, 255, 255, 0.8)',
-                opacity: Math.random() * 0.5 + 0.5,
-                fontFamily: 'monospace',
-                userSelect: 'none'
-            });
-
-            const animation = particle.animate(
-                [
-                    { 
-                        transform: 'translateY(-20px) translateX(0) rotate(0deg)',
-                        opacity: 1 
-                    },
-                    { 
-                        transform: `translateY(${window.innerHeight + 20}px) translateX(${swayAmount}px) rotate(${Math.random() * 360}deg)`,
-                        opacity: 0 
-                    }
-                ],
-                {
-                    duration: duration * 1000,
-                    easing: 'linear'
-                }
-            );
-
-            container.appendChild(particle);
-            animation.onfinish = () => particle.remove();
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            setInterval(createParticle, 100);
-        });
-    </script>
+    <footer>
+        <p>&copy; 2025 Miguel - All Rights Reserved</p>
+    </footer>
 </body>
-</html>
 </html>
